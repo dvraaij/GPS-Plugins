@@ -66,8 +66,9 @@ def search_for_begin(ev, c, backward):
             c[0].block_type()      == 'CAT_FUNCTION'  or  \
             c[0].block_type()      == 'CAT_TASK'      ):
             
-            # Goto the found location
+            # Jump the found location
             ev.goto(c[0])
+            ev.center(c[0])
             
             return True
         
@@ -83,6 +84,7 @@ def search_for_begin(ev, c, backward):
 
 @interactive(
     name       ='Jump to begin',
+    category   = 'Editor',
     contextual = __contextualMenuLabel,
     filter     = __contextualMenuFilter)
 def on_activate():
@@ -91,7 +93,7 @@ def on_activate():
     ev = GPS.EditorBuffer.get().current_view()
     
     # Create a mark at the current location
-    em = ev.cursor().create_mark('__start_search_for_begin')
+    em = ev.cursor().create_mark()
     
     # Search forward or else backward
     success = search_for_begin(ev, em.location(), backward = False) or \

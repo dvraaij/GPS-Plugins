@@ -27,15 +27,10 @@ def __contextualMenuFilter(context):
         return False
 
 
-def __contextualMenuLabel(context):
-    
-    # Name of the menu item
-    return 'Fold current block'
-
-
 @interactive(
-    name       ='Fold current block',
-    contextual = __contextualMenuLabel,
+    name       = 'Fold current block',
+    category   = 'Editor',
+    contextual = 'Fold current block',
     filter     = __contextualMenuFilter)
 def on_activate():
     
